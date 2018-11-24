@@ -6,7 +6,7 @@
         Draw <i>one square</i> for use in your game map
         like a forrest, a mountain, a river, or a castle.
         The pixel colour can be changed using the color
-        selector below,
+        selector below.
       </p>
       <%= render BoxerboyWeb.LayoutView,
         "editor.html",
@@ -16,6 +16,11 @@
           columns: 10,
         }
         %>
+      <div class="when-done">
+        <p>
+          When you are done editing, return to <a href="/build">Boxerboy Builder</a> to see all the terrains you created.
+        </p>
+      </div>
     </div>
   </div>
 </div>

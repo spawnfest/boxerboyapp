@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="columns is-centered top-header">
+    <div class="column is-half">
+      <h1>bb builder</h1>
+      <p>
+        A collection of all the game elements you
+        have built.
+      </p>
+    </div>
+  </div>
+  <div class="columns is-centered top-header">
+    <div class="column is-half">
+      <h2>Terrains (<%= Enum.count(@pixels) %>)</h2>
+      <p>
+        The basic building block for your maps.
+        Pick one to edit, or create a new one.
+      </p>
+    </div>
+  </div>
+  <div class="columns is-centered">
+    <div class="column is-half">
+      <div class="columns is-multiline">
+        <%= for pixel <- @pixels do %>
+          <div class="column is-2">
+            <a href="/build/terrain/<%= pixel.name %>" title="Click here to edit the <%= pixel.name %> terrain">
+              <%= render BoxerboyWeb.LayoutView, "rendered.html", pixel: pixel %>
+              <label><%= pixel.name %></label>
+            </a>
+          </div>
+        <% end %>
+        <div class="column is-2">
+          <a href="/build/terrain" title="Click here to create a new terrain">
+            <img src="/images/plus-circle-outline.svg" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

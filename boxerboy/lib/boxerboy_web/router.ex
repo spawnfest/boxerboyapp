@@ -17,6 +17,7 @@ defmodule BoxerboyWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/build", PageController, :build
     get "/build/terrain", PageController, :terrain
     get "/build/terrain/:name", PageController, :terrain
   end

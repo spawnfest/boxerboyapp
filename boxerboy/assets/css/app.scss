@@ -8,6 +8,10 @@
     @include title();
     font-size: 70px;
   }
+  h2 {
+    @include title();
+    font-size: 50px;
+  }
   a {
     @include text();
   }
@@ -15,6 +19,17 @@
 
 .toolbar {
   margin-top: 10px;
+}
+
+.pixel-rendered {
+  .canvas-container {
+    table {
+      td {
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
 }
 
 .pixel-editor {
@@ -66,4 +81,9 @@
       color: red;
     }
   }
+}
+
+.when-done {
+  margin-top: 20px;
+  @include text();
 }

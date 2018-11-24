@@ -1,0 +1,15 @@
+<div class="pixel-rendered">
+  <div class="canvas-container">
+    <table class="pixel-table">
+      <%= for i <- 0..(@pixel.rows-1) do %>
+        <% pixel_row = Enum.at(@pixel.pixels, i, []) %>
+        <tr class="pixel-row">
+          <%= for j <- 0..(@pixel.columns-1) do %>
+            <% pixel_column = Enum.at(pixel_row, j, "") %>
+            <td class="pixel-column" data-color="<%= pixel_column %>" style="background-color: <%= pixel_column %>" ></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
