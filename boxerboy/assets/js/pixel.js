@@ -20,7 +20,11 @@ export var Pixel = (function() {
     }
   }
 
-  entity.paint = function(cell) {
+  entity.paint = function(cell, isStillPainting) {
+    if (isStillPainting) {
+      entity.isPainting = true;
+    }
+
     const color = entity.colorPicker.value;
     cell.style.backgroundColor = color;
     cell.dataset.color = color;
@@ -52,9 +56,9 @@ export var Pixel = (function() {
     entity.cells = document.getElementsByClassName("pixel-column")
     entity.colorPicker = document.querySelector(".color-selector");
     for ( let c of entity.cells ) {
-      c.onmousedown = function() { entity.isPainting = true; }
+      c.onmousedown = function() { entity.paint(c, true); }
       c.onmouseup = function() { entity.isPainting = false; }
-      c.onclick = function() { entity.paint(c); };
+      c.onclick = function() { entity.paint(c, false); };
       c.onmouseover = function() { entity.paintIf(c) };
     }
   }
