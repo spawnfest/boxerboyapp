@@ -1,0 +1,16 @@
+<div class="pixel-editor">
+  <div class="toolbar">
+    <input class="color-selector" type="color" value="<%= @default_color %>">
+  </div>
+  <div class="canvas-container">
+    <table class="pixel-table">
+      <%= for _ <- 1..@num_rows do %>
+        <tr class="pixel-row">
+          <%= for _ <- 1..@num_columns do %>
+            <td class="pixel-column"></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -1,2 +1,29 @@
 
+@import "variables";
 @import "bulma/bulma";
+
+.top-header {
+  margin-top: 40px;
+  h1 {
+    @include title();
+    font-size: 70px;
+  }
+  a {
+    @include text();
+  }
+}
+
+.pixel-editor {
+  .canvas-container {
+    table {
+      margin-top: 10px;
+      width: 100%;
+      td {
+        border: 1px solid #dfe6e9;
+        cursor: url('/images/brush-nw.svg'), auto;
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+}

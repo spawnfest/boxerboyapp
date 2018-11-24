@@ -4,4 +4,8 @@ defmodule BoxerboyWeb.PageController do
   def index(conn, _params) do
     render(conn, "index.html")
   end
+
+  def terrain(conn, _params) do
+    render(conn, "terrain.html")
+  end
 end

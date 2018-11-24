@@ -17,6 +17,7 @@ defmodule BoxerboyWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/build/terrain", PageController, :terrain
   end
 
   # Other scopes may use custom stacks.

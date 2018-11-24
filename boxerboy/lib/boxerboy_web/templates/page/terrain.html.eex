@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="columns is-centered top-header">
+    <div class="column is-half">
+      <h1>Terrain</h1>
+      <p>
+        Draw <i>one square</i> for use in your game map
+        like a forrest, a mountain, a river, or a castle.
+      </p>
+      <%= render BoxerboyWeb.LayoutView,
+        "editor.html",
+        default_color: "#55efc4",
+        num_rows: 10,
+        num_columns: 10
+        %>
+    </div>
+  </div>
+</div>

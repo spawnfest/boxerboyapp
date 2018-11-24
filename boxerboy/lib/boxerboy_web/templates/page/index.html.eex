@@ -1,7 +1,8 @@
 <div class="container">
-  <div class="columns is-centered">
+  <div class="columns is-centered top-header">
     <div class="column is-half">
       <h1>boxerboy</h1>
+      <a href="/build/terrain">Build Terrain</a>
     </div>
   </div>
 </div>
