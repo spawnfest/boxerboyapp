@@ -7,7 +7,7 @@ export var Pixel = (function() {
   };
 
   function clean(raw) {
-    if (typeof raw == "undefined") {
+    if (typeof raw == "undefined" || ! raw) {
       return null;
     } else {
       return raw;
@@ -25,16 +25,17 @@ export var Pixel = (function() {
       entity.isPainting = true;
     }
 
-    const color = entity.colorPicker.value;
-    cell.style.backgroundColor = color;
-    cell.dataset.color = color;
+    const color = entity.colorPicker.val();
+    cell.css('background-color', color);
+    cell.attr("data-color", color);
   }
 
   entity.encode = function() {
     let encodedTable = [];
     let numRows = 0;
     let numColumns = 0;
-    for (let i = 0, row; row = entity.table.rows[i]; i++) {
+
+    for (let i = 0, row; row = entity.table[0].rows[i]; i++) {
        numRows += 1;
        numColumns = 0;
        let encodedRow = []
@@ -48,19 +49,18 @@ export var Pixel = (function() {
       rows: numRows,
       columns: numColumns,
       pixels: encodedTable,
-    }
+    };
   }
 
   entity.run = function() {
-    entity.table = document.querySelector(".pixel-table");
-    entity.cells = document.getElementsByClassName("pixel-column")
-    entity.colorPicker = document.querySelector(".color-selector");
-    for ( let c of entity.cells ) {
-      c.onmousedown = function() { entity.paint(c, true); }
-      c.onmouseup = function() { entity.isPainting = false; }
-      c.onclick = function() { entity.paint(c, false); };
-      c.onmouseover = function() { entity.paintIf(c) };
-    }
+    entity.table = $(".pixel-table");
+    entity.cells = $(".pixel-column")
+    entity.colorPicker = $(".color-selector");
+
+    entity.table.on("mousedown", "td", function() { entity.paint($(this), true) });
+    entity.table.on("mouseup", "td", function() { entity.isPainting = false; });
+    entity.table.on("click", "td", function() { entity.paint($(this), false); });
+    entity.table.on("mouseover", "td", function() { entity.paintIf($(this)); });
   }
 
   return entity;
