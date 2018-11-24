@@ -30,6 +30,15 @@ defmodule Pixeldb.Worker do
     {:reply, state[:pixels] |> Map.keys(), state}
   end
 
+  def handle_call(:ls_la, _from, state) do
+    state[:pixels]
+    |> Map.values()
+    |> Enum.sort_by(& &1.name)
+    |> (fn pixels ->
+          {:reply, pixels, state}
+        end).()
+  end
+
   defp restore_pixels(pid) do
     pid
     |> :ets.tab2list()

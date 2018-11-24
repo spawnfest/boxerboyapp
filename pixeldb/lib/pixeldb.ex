@@ -82,6 +82,26 @@ defmodule Pixeldb do
   end
 
   @doc """
+  List all saved pixels in their entirety.
+
+  If you are managing multiple pixel databases, then
+  you can provide the `pid`, otherwise it will default
+  to the named worker
+
+  ## Examples
+
+      Pixeldb.ls_la()
+      iex> [%Pixeldb.Pixel{name: "mountain"},
+          %Pixeldb.Pixel{name: "river"},
+          %Pixeldb.Pixel{name: "desert"}
+        ]
+
+  """
+  def ls_la(pid \\ nil) do
+    GenServer.call(Worker.resolve_pid(pid), :ls_la)
+  end
+
+  @doc """
   Retrieve a `Pixeldb.Pixel` by name.
 
   If you are managing multiple pixel databases, then

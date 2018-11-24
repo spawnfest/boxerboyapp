@@ -16,6 +16,9 @@ defmodule PixeldbTest do
     assert pixel == Pixeldb.fetch("mountain", pid)
 
     assert ["mountain"] == Pixeldb.ls(pid)
+
+    assert [%Pixel{name: "mountain", rows: 1, columns: 1, pixels: [["#3d3d3d"]]}] ==
+             Pixeldb.ls_la(pid)
   end
 
   test "persist pixels for restart" do
