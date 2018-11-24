@@ -112,11 +112,37 @@ defmodule Pixeldb do
 
   ## Examples
 
+      # If you are building this yourself, then it should look like this
       iex> Pixeldb.upsert(%Pixeldb.Pixel{name: "mountain", rows: 1, columns: 1, pixels: [["#55efc4"]]})
       {:ok, %Pixeldb.Pixel{columns: 1, pixels: [["#55efc4"]], rows: 1}}
+
+      # If you are coming from a web request, it might look like this
+      iex> Pixeldb.upsert(%{"columns" => "3", "name" => "river", "pixels" => %{"0" => ["#55efc4", "#55efc5", ""], "1" => ["#55efc6", "#55efc7", ""], "2" => ["", "", "", ""]}, "rows" => "3"})
+
   """
-  def upsert(%Pixel{} = pixel, pid \\ nil) do
-    GenServer.call(Worker.resolve_pid(pid), {:upsert, pixel})
+  def upsert(pixel), do: upsert(pixel, nil)
+
+  def upsert(
+        %{"name" => name, "rows" => raw_rows, "columns" => raw_cols, "pixels" => raw_pixels},
+        pid
+      ) do
+    raw_pixels
+    |> Enum.to_list()
+    |> Enum.map(fn {_, v} ->
+      Enum.map(v, fn
+        "" -> nil
+        col -> col
+      end)
+    end)
+    |> (fn pixels ->
+          {columns, ""} = Integer.parse(raw_cols)
+          {rows, ""} = Integer.parse(raw_rows)
+          %Pixel{name: name, rows: rows, columns: columns, pixels: pixels}
+        end).()
+    |> upsert(pid)
   end
 
+  def upsert(%Pixel{} = pixel, pid) do
+    GenServer.call(Worker.resolve_pid(pid), {:upsert, pixel})
+  end
 end

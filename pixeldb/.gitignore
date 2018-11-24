@@ -27,3 +27,4 @@ config/dev.exs
 # Project specific ignores
 pixeldb.tab
 pixeldb_1.tab
+pixeldb_2.tab

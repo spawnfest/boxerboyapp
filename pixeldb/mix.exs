@@ -6,6 +6,7 @@ defmodule Pixeldb.Mixfile do
 
   @deps [
     {:persistent_ets, github: "michalmuskala/persistent_ets"},
+    {:jason, "~> 1.0"},
     {:fn_expr, "~> 0.3"},
     {:ex_doc, ">= 0.0.0", only: :dev}
   ]
