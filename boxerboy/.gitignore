@@ -44,3 +44,4 @@ npm-debug.log
 # Custom based on my dev env
 .DS_Store
 assets/static/images/*
+*.tab
