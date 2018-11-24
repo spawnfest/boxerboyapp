@@ -5,12 +5,19 @@ defmodule Pixeldb.Mixfile do
   @version "0.1.0"
 
   @deps [
-    # { :earmark, ">0.1.5" },
-    # { :ex_doc,  "1.2.3", only: [ :dev, :test ] },
-    # { :my_app:  path: "../my_app" },
+    {:persistent_ets, github: "michalmuskala/persistent_ets"},
+    {:fn_expr, "~> 0.3"},
+    {:ex_doc, ">= 0.0.0", only: :dev}
   ]
 
   @aliases []
+
+  @package [
+    name: @name,
+    files: ["lib", "mix.exs", "README*", "LICENSE*"],
+    maintainers: ["Andrew Forward"],
+    licenses: ["MIT"]
+  ]
 
   # ------------------------------------------------------------
 
@@ -21,19 +28,16 @@ defmodule Pixeldb.Mixfile do
       app: @name,
       version: @version,
       elixir: ">= 1.7.1",
+      description: "A database for storing 'pixel' drawings",
+      docs: [main: "Pixeldb", extras: ["README.md"]],
+      package: @package,
+      build_embedded: in_production,
       deps: @deps,
       aliases: @aliases,
-      elixirc_paths: ["lib"],
-      build_embedded: in_production
+      elixirc_paths: elixirc_paths(Mix.env())
     ]
   end
 
-  def application do
-    [
-      mod: {Pixeldb, []},
-      extra_applications: [
-        :logger
-      ]
-    ]
-  end
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
 end

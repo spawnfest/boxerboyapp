@@ -1,9 +1,11 @@
-# Pixeldb
+# PixelDB
 
-> TODO: Add description**
 
 
 ## Installation
+
+All this component to your application by adding a dependency
+to your `mix.exs` file.
 
 ```elixir
 @deps [
@@ -13,7 +15,5 @@
 
 ## License
 
-> TODO: Add license
+MIT License
 
-----
-Created:  2018-11-24Z

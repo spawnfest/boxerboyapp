@@ -24,3 +24,6 @@ erl_crash.dump
 # For local testing, otherwise should be set by the calling application
 config/dev.exs
 
+# Project specific ignores
+pixeldb.tab
+pixeldb_1.tab
