@@ -11,8 +11,10 @@
       <%= render BoxerboyWeb.LayoutView,
         "editor.html",
         default_color: "#55efc4",
-        num_rows: 10,
-        num_columns: 10
+        pixel: assigns[:pixel] || %Pixeldb.Pixel{
+          rows: 10,
+          columns: 10,
+        }
         %>
     </div>
   </div>

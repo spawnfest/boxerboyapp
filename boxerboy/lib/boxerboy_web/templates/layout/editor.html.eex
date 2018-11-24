@@ -6,10 +6,12 @@
   </div>
   <div class="canvas-container">
     <table class="pixel-table">
-      <%= for _ <- 1..@num_rows do %>
+      <%= for i <- 0..(@pixel.rows-1) do %>
+        <% pixel_row = Enum.at(@pixel.pixels, i, []) %>
         <tr class="pixel-row">
-          <%= for _ <- 1..@num_columns do %>
-            <td class="pixel-column"></td>
+          <%= for j <- 0..(@pixel.columns-1) do %>
+            <% pixel_column = Enum.at(pixel_row, j, "") %>
+            <td class="pixel-column" data-color="<%= pixel_column %>" style="background-color: <%= pixel_column %>" ></td>
           <% end %>
         </tr>
       <% end %>
@@ -18,7 +20,7 @@
   <div class="save-container">
     <div class="columns">
       <div class="column is-three-quarters">
-        <input name="pixel-name" class="input is-medium" type="text" placeholder="Give this pic a name if you want to save it" value="<%= assigns[:name] %>">
+        <input name="pixel-name" class="input is-medium" type="text" placeholder="Give this pic a name if you want to save it" value="<%= @pixel.name %>">
       </div>
       <div class="column is-one-quarter">
         <button name="pixel-save" class="button is-primary is-medium is-fullwidth">Save</button>
@@ -46,5 +48,4 @@
     </div>
     <button class="modal-close is-large" aria-label="close"></button>
   </div>
-
 </div>

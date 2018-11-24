@@ -5,7 +5,11 @@ defmodule BoxerboyWeb.PageController do
     render(conn, "index.html")
   end
 
-  def terrain(conn, _params) do
-    render(conn, "terrain.html")
+  def terrain(conn, params) do
+    params["name"]
+    |> Pixeldb.fetch(:terrain)
+    |> (fn pixel ->
+          render(conn, "terrain.html", pixel: pixel)
+        end).()
   end
 end

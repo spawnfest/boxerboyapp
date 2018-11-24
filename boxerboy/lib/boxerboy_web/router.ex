@@ -18,6 +18,7 @@ defmodule BoxerboyWeb.Router do
 
     get "/", PageController, :index
     get "/build/terrain", PageController, :terrain
+    get "/build/terrain/:name", PageController, :terrain
   end
 
   scope "/api", BoxerboyWeb do
