@@ -1,6 +1,8 @@
 <div class="pixel-editor">
   <div class="toolbar">
-    <input class="color-selector" type="color" value="<%= @default_color %>">
+    <div class="color-selector">
+      <input type="color" value="<%= @default_color %>">
+    </div>
   </div>
   <div class="canvas-container">
     <table class="pixel-table">
@@ -13,4 +15,36 @@
       <% end %>
     </table>
   </div>
+  <div class="save-container">
+    <div class="columns">
+      <div class="column is-three-quarters">
+        <input name="pixel-name" class="input is-medium" type="text" placeholder="Give this pic a name if you want to save it" value="<%= assigns[:name] %>">
+      </div>
+      <div class="column is-one-quarter">
+        <button name="pixel-save" class="button is-primary is-medium is-fullwidth">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal success-modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      Pixels Saved
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+
+  <div class="modal error-modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      Something went terribly wrong when saving your
+      pixel.  Most likely your work is lost.
+      Close this message when you are ready (top right corner)
+      and try again.  If this issue persists, please reach out to
+      <a href="mailto:aforward@gmail.com">aforward@gmail.com</a>
+      and tell him (politely) his sh*t be broken.
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+
 </div>

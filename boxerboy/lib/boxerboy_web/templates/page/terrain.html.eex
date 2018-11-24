@@ -5,6 +5,8 @@
       <p>
         Draw <i>one square</i> for use in your game map
         like a forrest, a mountain, a river, or a castle.
+        The pixel colour can be changed using the color
+        selector below,
       </p>
       <%= render BoxerboyWeb.LayoutView,
         "editor.html",

@@ -8,6 +8,7 @@ import "phoenix_html"
 window.Require = require.context("./", true, /\.js$/);
 export var App = (function() {
   return {
+    "$": $,
     Pixel: Pixel,
     run: function() {
       this.Pixel.run();

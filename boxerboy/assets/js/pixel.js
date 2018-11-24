@@ -1,5 +1,6 @@
 export var Pixel = (function() {
   let entity = {
+    name: null,
     isPainting: false,
     colorPicker: null,
     table: null,
@@ -12,6 +13,37 @@ export var Pixel = (function() {
     } else {
       return raw;
     }
+  }
+
+  function alignColorPicker() {
+    entity.colorPickerContainer.css("background-color", entity.colorPicker.val());
+  }
+
+  entity.refreshEditor = function() {
+    const disabled = entity.name.val() == "";
+    entity.save.removeClass("is-loading");
+    entity.save.prop('disabled', disabled);
+    entity.successModal.removeClass("is-active");
+    entity.errorModal.removeClass("is-active");
+  }
+
+  entity.attemptSave = function()
+  {
+    entity.save.addClass("is-loading");
+    entity.save.prop('disabled', true);
+    $.ajax({
+      url: '/api/build/terrain',
+      type: "PUT",
+      dataType: "json",
+      data: entity.encode(),
+      success: function (reply) {
+        entity.successModal.addClass("is-active");
+        setTimeout(entity.refreshEditor, 1000);
+      },
+      fail: function () {
+        entity.errorModal.addClass("is-active");
+      }
+    });
   }
 
   entity.paintIf = function(cell) {
@@ -46,6 +78,7 @@ export var Pixel = (function() {
        encodedTable.push(encodedRow);
     }
     return {
+      name: entity.name.val(),
       rows: numRows,
       columns: numColumns,
       pixels: encodedTable,
@@ -55,12 +88,36 @@ export var Pixel = (function() {
   entity.run = function() {
     entity.table = $(".pixel-table");
     entity.cells = $(".pixel-column")
-    entity.colorPicker = $(".color-selector");
+    entity.colorPickerContainer = $(".color-selector");
+    entity.colorPicker = $(".color-selector > input");
+    entity.name = $('[name="pixel-name"]');
+    entity.save = $('[name="pixel-save"]');
+    entity.errorModal = $(".pixel-editor .error-modal");
+    entity.successModal = $(".pixel-editor .success-modal");
 
     entity.table.on("mousedown", "td", function() { entity.paint($(this), true) });
     entity.table.on("mouseup", "td", function() { entity.isPainting = false; });
     entity.table.on("click", "td", function() { entity.paint($(this), false); });
     entity.table.on("mouseover", "td", function() { entity.paintIf($(this)); });
+
+    entity.colorPicker.on("change", null, function() {
+      alignColorPicker();
+    });
+    alignColorPicker();
+
+    entity.name.on("change", null, function() {
+      entity.refreshEditor();
+    });
+
+    entity.name.on("keyup", null, function() {
+      entity.refreshEditor();
+    });
+
+    entity.save.on("click", null, function() {
+      entity.attemptSave();
+    });
+
+    entity.refreshEditor();
   }
 
   return entity;

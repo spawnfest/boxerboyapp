@@ -13,7 +13,20 @@
   }
 }
 
+.toolbar {
+  margin-top: 10px;
+}
+
 .pixel-editor {
+  .color-selector {
+    input {
+      opacity: 0;
+      display: block;
+      width: 100%;
+      height: 32px;
+      border: none;
+    }
+  }
   .canvas-container {
     table {
       margin-top: 10px;
@@ -24,6 +37,33 @@
         width: 50px;
         height: 50px;
       }
+    }
+  }
+  .save-container {
+    margin-top: 10px;
+  }
+
+  .success-modal {
+    .modal-content {
+      @include text();
+      background-color: #ffffff;
+      padding: 30px 40px 30px 40px;
+      border: 2px solid #000000;
+      border-radius: 5px;
+      font-size: 70px;
+      color: #1e90ff;
+      text-align: center;
+    }
+  }
+
+  .error-modal {
+    .modal-content {
+      @include text();
+      background-color: #ffffff;
+      padding: 30px 40px 30px 40px;
+      border: 2px solid #000000;
+      border-radius: 5px;
+      color: red;
     }
   }
 }

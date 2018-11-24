@@ -20,8 +20,8 @@ defmodule BoxerboyWeb.Router do
     get "/build/terrain", PageController, :terrain
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", BoxerboyWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", BoxerboyWeb do
+    pipe_through(:api)
+    put("/build/terrain", ApiController, :upsert_terrain)
+  end
 end
