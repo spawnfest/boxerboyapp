@@ -10,7 +10,7 @@
   </div>
   <div class="columns is-centered top-header">
     <div class="column is-half">
-      <h2>Terrains (<%= Enum.count(@pixels) %>)</h2>
+      <h2>Terrains (<%= Enum.count(@terrains) %>)</h2>
       <p>
         The basic building block for your maps.
         Pick one to edit, or create a new one.
@@ -20,7 +20,7 @@
   <div class="columns is-centered">
     <div class="column is-half">
       <div class="columns is-multiline">
-        <%= for pixel <- @pixels do %>
+        <%= for pixel <- @terrains do %>
           <div class="column is-2">
             <a href="/build/terrain/<%= pixel.name %>" title="Click here to edit the <%= pixel.name %> terrain">
               <%= render BoxerboyWeb.LayoutView, "rendered.html", pixel: pixel %>

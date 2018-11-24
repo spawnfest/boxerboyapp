@@ -6,7 +6,7 @@ defmodule Boxerboy.Application do
   def start(_type, _args) do
     children = [
       BoxerboyWeb.Endpoint,
-      {Pixeldb.Worker, [table: "terrain.tab", name: :terrain]}
+      {Pixeldb.Worker, [table: "terrains.tab", name: :terrains]}
     ]
 
     opts = [strategy: :one_for_one, name: Boxerboy.Supervisor]

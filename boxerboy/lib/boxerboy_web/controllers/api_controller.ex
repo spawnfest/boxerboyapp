@@ -3,7 +3,7 @@ defmodule BoxerboyWeb.ApiController do
 
   def upsert_terrain(conn, params) do
     params
-    |> Pixeldb.upsert(:terrain)
+    |> Pixeldb.upsert(:terrains)
     |> case do
       {:ok, pixel} ->
         render(conn, "data.json", data: [true, pixel])
