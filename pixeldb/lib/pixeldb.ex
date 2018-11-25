@@ -167,5 +167,4 @@ defmodule Pixeldb do
   end
 
   defdelegate to_bmp(pixel), to: Bitmap, as: :generate
-
 end

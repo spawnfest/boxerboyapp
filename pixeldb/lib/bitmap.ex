@@ -12,6 +12,7 @@ defmodule Pixeldb.Bitmap do
   alias Pixeldb.Pixel
 
   def generate(nil), do: nil
+
   def generate(%Pixel{} = pixel) do
     file_header() <> win2x_header(pixel.columns, pixel.rows) <> pixel_data(pixel)
   end
