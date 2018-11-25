@@ -35,7 +35,7 @@ export var Pixel = (function() {
 
   /**
    * Attempt a save, this will disable the button, run the
-   * ajax call (to `/api/build/{pixelentity}`) and then report
+   * ajax call (to `/api/{pixelentity}`) and then report
    * the results based on `.success-modal` and `.error-modal`
    */
   entity.attemptSave = function()
@@ -43,7 +43,7 @@ export var Pixel = (function() {
     entity.save.addClass("is-loading");
     entity.save.prop('disabled', true);
     $.ajax({
-      url: `/api/build/${entity.save.data("pixelentity")}`,
+      url: `/api/${entity.save.data("pixelentity")}`,
       type: "PUT",
       dataType: "json",
       data: entity.encode(),

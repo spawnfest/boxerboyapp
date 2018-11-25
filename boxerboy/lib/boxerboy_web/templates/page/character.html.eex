@@ -20,7 +20,7 @@
         %>
       <div class="when-done">
         <p>
-          When you are done editing, return to <a href="/build">Boxerboy Builder</a> to see all the characters you created.
+          When you are done editing, return to <a href="/">Boxerboy</a> homepage to see all the characters you created.
         </p>
       </div>
     </div>

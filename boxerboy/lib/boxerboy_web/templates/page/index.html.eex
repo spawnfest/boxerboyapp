@@ -1,8 +1,103 @@
+
 <div class="container">
   <div class="columns is-centered top-header">
     <div class="column is-half">
-      <h1>boxerboy</h1>
-      <a href="/build/terrain">Build Terrain</a>
+      <h1>Boxerboy</h1>
+      <p>
+        Helping you to build your own boxerboy
+        adventure.
+      </p>
     </div>
   </div>
+
+  <div class="columns is-centered top-header">
+    <div class="column is-half">
+      <h2>Terrains (<%= Enum.count(@terrains) %>)</h2>
+      <p>
+        The basic building block for your maps.
+        Pick one to edit, or create a new one.
+      </p>
+    </div>
+  </div>
+  <div class="columns is-centered">
+    <div class="column is-half">
+      <div class="columns is-multiline terrains-list">
+        <%= for pixel <- @terrains do %>
+          <div class="column is-2">
+            <div class="pixel">
+              <a href="/terrain/<%= pixel.name %>" title="Click here to edit the <%= pixel.name %> terrain">
+                <img src="/gen/terrain/<%= pixel.name %>" />
+                <div class="pixel-name"><%= pixel.name %></div>
+              </a>
+            </div>
+          </div>
+        <% end %>
+        <div class="column is-2">
+          <a href="/terrain" title="Click here to create a new terrain">
+            <img class="add-icon" src="/images/plus-circle-outline.svg" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns is-centered top-header">
+    <div class="column is-half">
+      <h2>Maps (<%= Enum.count(@maps) %>)</h2>
+      <p>
+        Your game maps. Pick one to edit, or create a new one.
+      </p>
+    </div>
+  </div>
+  <div class="columns is-centered">
+    <div class="column is-half">
+      <div class="columns is-multiline maps-list">
+        <%= for pixel <- @maps do %>
+          <div class="column is-2">
+            <a href="/map/<%= pixel.name %>" title="Click here to edit the <%= pixel.name %> terrain">
+              <%= render BoxerboyWeb.LayoutView, "rendered.html", pixel: pixel %>
+              <label><%= pixel.name %></label>
+            </a>
+          </div>
+        <% end %>
+        <div class="column is-2">
+          <a href="/map" title="Click here to create a new terrain">
+            <img class="add-icon" src="/images/plus-circle-outline.svg" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns is-centered top-header">
+    <div class="column is-half">
+      <h2>Characters (<%= Enum.count(@characters) %>)</h2>
+      <p>
+        Boxerboy friends and allies, as well as
+        enemies and bosses.
+      </p>
+    </div>
+  </div>
+  <div class="columns is-centered">
+    <div class="column is-half">
+      <div class="columns is-multiline terrains-list">
+        <%= for pixel <- @characters do %>
+          <div class="column is-2">
+            <div class="pixel">
+              <a href="/character/<%= pixel.name %>" title="Click here to edit the <%= pixel.name %> character">
+                <img src="/gen/character/<%= pixel.name %>" />
+                <div class="pixel-name"><%= pixel.name %></div>
+              </a>
+            </div>
+          </div>
+        <% end %>
+        <div class="column is-2">
+          <a href="/character" title="Click here to create a new character">
+            <img class="add-icon" src="/images/plus-circle-outline.svg" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

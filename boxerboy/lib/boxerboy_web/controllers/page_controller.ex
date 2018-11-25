@@ -2,13 +2,9 @@ defmodule BoxerboyWeb.PageController do
   use BoxerboyWeb, :controller
 
   def index(conn, _params) do
-    render(conn, "index.html")
-  end
-
-  def build(conn, _params) do
     render(
       conn,
-      "build.html",
+      "index.html",
       terrains: Pixeldb.ls_la(:terrains),
       maps: Pixeldb.ls_la(:maps),
       characters: Pixeldb.ls_la(:characters)
