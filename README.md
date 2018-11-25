@@ -1,6 +1,8 @@
 # Boxerboy
 
-<img width="1145" alt="screen shot 2018-11-25 at 11 56 33 am" src="https://user-images.githubusercontent.com/48086/48981896-38547b00-f0a9-11e8-8f1f-0549516c99c9.png">
+<img width="1091" alt="screen shot 2018-11-25 at 12 24 48 pm" src="https://user-images.githubusercontent.com/48086/48982195-38567a00-f0ad-11e8-8adb-406f78e79ba8.png">
+
+<img width="1160" alt="screen shot 2018-11-25 at 12 26 13 pm" src="https://user-images.githubusercontent.com/48086/48982208-515f2b00-f0ad-11e8-819e-94053d1f6357.png">
 
 
 ## Getting Started
