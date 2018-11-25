@@ -62,7 +62,7 @@ defmodule Pixeldb do
 
   """
 
-  alias Pixeldb.{Pixel, Worker}
+  alias Pixeldb.{Pixel, Bitmap, Worker}
 
   @doc """
   List all saved pixels by name.
@@ -165,4 +165,7 @@ defmodule Pixeldb do
   def upsert(%Pixel{} = pixel, pid) do
     GenServer.call(Worker.resolve_pid(pid), {:upsert, pixel})
   end
+
+  defdelegate to_bmp(pixel), to: Bitmap, as: :generate
+
 end

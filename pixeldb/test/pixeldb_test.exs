@@ -62,6 +62,27 @@ defmodule PixeldbTest do
     assert struct_pixel == Pixeldb.fetch("river", pid)
   end
 
+  test "to_bmp handles nil" do
+    assert nil == Pixeldb.to_bmp(nil)
+  end
+
+  test "to_bmp generates a file" do
+    pixel = %Pixel{
+      name: "ok",
+      rows: 4,
+      columns: 4,
+      pixels: [
+        ["#3498db", "#3498db", "#3498db", "#3498db"],
+        [nil, nil, nil, nil],
+        [nil, nil, nil, nil],
+        ["#f1c40f", "#f1c40f", "#f1c40f", "#f1c40f"]
+      ]
+    }
+
+    expected = File.read!("./test/fixtures/blue_over_orange.bmp")
+    assert expected == Pixeldb.to_bmp(pixel)
+  end
+
   def worker(opts \\ []) do
     opts
     |> Keyword.put(:name, "t#{:rand.uniform(10)}" |> String.to_atom())

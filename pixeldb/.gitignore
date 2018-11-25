@@ -28,3 +28,5 @@ config/dev.exs
 pixeldb.tab
 pixeldb_1.tab
 pixeldb_2.tab
+test.bmp
+test2.bmp
