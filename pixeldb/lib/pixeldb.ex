@@ -148,6 +148,8 @@ defmodule Pixeldb do
       ) do
     raw_pixels
     |> Enum.to_list()
+    |> Enum.map(fn {k, v} -> {k |> Integer.parse() |> elem(0), v} end)
+    |> Enum.sort_by(fn {k, _v} -> k end)
     |> Enum.map(fn {_, v} ->
       Enum.map(v, fn
         "" -> nil

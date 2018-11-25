@@ -62,6 +62,55 @@ defmodule PixeldbTest do
     assert struct_pixel == Pixeldb.fetch("river", pid)
   end
 
+  test "upsert properly sort string numbers" do
+    pid = worker(table: "pixeldb_2.tab")
+
+    raw_pixel = %{
+      "columns" => "3",
+      "name" => "river",
+      "pixels" => %{
+        "0" => ["#55efc4", "#55efc5", ""],
+        "1" => ["#55efc6", "#55efc7", nil],
+        "2" => ["#55efc6", "#55efc7", ""],
+        "3" => ["#55efc6", "#55efc7", ""],
+        "4" => ["", "", ""],
+        "5" => ["", "", ""],
+        "6" => ["", "", ""],
+        "7" => ["", "", ""],
+        "8" => ["", "", ""],
+        "9" => ["", "", ""],
+        "10" => ["", "", ""],
+        "11" => ["", "", ""],
+        "12" => ["", "", ""]
+      },
+      "rows" => "3"
+    }
+
+    struct_pixel = %Pixel{
+      name: "river",
+      rows: 3,
+      columns: 3,
+      pixels: [
+        ["#55efc4", "#55efc5", nil],
+        ["#55efc6", "#55efc7", nil],
+        ["#55efc6", "#55efc7", nil],
+        ["#55efc6", "#55efc7", nil],
+        [nil, nil, nil],
+        [nil, nil, nil],
+        [nil, nil, nil],
+        [nil, nil, nil],
+        [nil, nil, nil],
+        [nil, nil, nil],
+        [nil, nil, nil],
+        [nil, nil, nil],
+        [nil, nil, nil]
+      ]
+    }
+
+    Pixeldb.upsert(raw_pixel, pid)
+    assert struct_pixel == Pixeldb.fetch("river", pid)
+  end
+
   test "to_bmp handles nil" do
     assert nil == Pixeldb.to_bmp(nil)
   end
