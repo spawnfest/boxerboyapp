@@ -1,6 +1,6 @@
 <div class="container">
   <div class="columns is-centered top-header">
-    <div class="column is-half">
+    <div class="column">
       <h1>Map</h1>
       <p>
         Layout a "one-page" map for your game.
@@ -12,7 +12,7 @@
         pixeltype: :pixel,
         pixelentity: :map,
         pixels: assigns[:pixels],
-        pixelheight: "50px",
+        pixelheight: "70px",
         pixel: assigns[:pixel] || %Pixeldb.Pixel{
           rows: 10,
           columns: 10,
