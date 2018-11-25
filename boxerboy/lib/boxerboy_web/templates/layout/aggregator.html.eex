@@ -9,13 +9,13 @@
     </div>
   </div>
   <div class="aggregator-container">
-    <table class="aggregate-table">
+    <table class="pixel-table" data-pixeltype="<%= @pixeltype %>">
       <%= for i <- 0..(@aggregate.rows-1) do %>
         <% pixel_row = Enum.at(@aggregate.pixels, i, []) %>
-        <tr class="aggregate-row">
+        <tr>
           <%= for j <- 0..(@aggregate.columns-1) do %>
             <% pixel_name = Enum.at(pixel_row, j, "") %>
-            <td class="aggregate-column" <%= if pixel_name do %>data-name="<%= pixel_name %>" style="background-image: url('/gen/terrain/<%= pixel_name %>')"<% end %>></td>
+            <td <%= if pixel_name do %>data-pixel="<%= pixel_name %>" style="background-image: url('/gen/terrain/<%= pixel_name %>')"<% end %>></td>
           <% end %>
         </tr>
       <% end %>
@@ -24,10 +24,10 @@
   <div class="save-container">
     <div class="columns">
       <div class="column is-three-quarters">
-        <input name="aggregate-name" class="input is-medium" type="text" placeholder="Give this map a name if you want to save it" value="<%= @aggregate.name %>">
+        <input name="pixel-name" class="input is-medium" type="text" placeholder="Give this map a name if you want to save it" value="<%= @aggregate.name %>">
       </div>
       <div class="column is-one-quarter">
-        <button name="aggregate-save" class="button is-primary is-medium is-fullwidth">Save</button>
+        <button name="pixel-save" class="button is-primary is-medium is-fullwidth" data-pixelentity="<%= @pixelentity %>">Save</button>
       </div>
     </div>
   </div>

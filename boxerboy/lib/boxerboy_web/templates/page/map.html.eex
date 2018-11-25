@@ -9,6 +9,8 @@
       </p>
       <%= render BoxerboyWeb.LayoutView,
         "aggregator.html",
+        pixeltype: :pixel,
+        pixelentity: :map,
         pixels: assigns[:pixels],
         aggregate: assigns[:aggregate] || %Pixeldb.Pixel{
           rows: 10,

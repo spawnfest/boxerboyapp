@@ -6,7 +6,7 @@
         <tr class="pixel-row">
           <%= for j <- 0..(@pixel.columns-1) do %>
             <% pixel_name = Enum.at(pixel_row, j, "") %>
-            <td class="pixel-column" data-name="<%= pixel_name %>">
+            <td data-name="<%= pixel_name %>">
               <%= if pixel_name do %>
                 <img src="/gen/terrain/<%= pixel_name %>" />
               <% end %>

@@ -5,13 +5,13 @@
     </div>
   </div>
   <div class="canvas-container">
-    <table class="pixel-table">
+    <table class="pixel-table" data-pixeltype="<%= @pixeltype %>">
       <%= for i <- 0..(@pixel.rows-1) do %>
         <% pixel_row = Enum.at(@pixel.pixels, i, []) %>
-        <tr class="pixel-row">
+        <tr>
           <%= for j <- 0..(@pixel.columns-1) do %>
             <% pixel_column = Enum.at(pixel_row, j, "") %>
-            <td class="pixel-column" data-color="<%= pixel_column %>" style="background-color: <%= pixel_column %>" ></td>
+            <td data-pixel="<%= pixel_column %>" style="background-color: <%= pixel_column %>" ></td>
           <% end %>
         </tr>
       <% end %>
@@ -23,7 +23,7 @@
         <input name="pixel-name" class="input is-medium" type="text" placeholder="Give this pic a name if you want to save it" value="<%= @pixel.name %>">
       </div>
       <div class="column is-one-quarter">
-        <button name="pixel-save" class="button is-primary is-medium is-fullwidth" data-pixeltype="<%= @pixel_type %>">Save</button>
+        <button name="pixel-save" class="button is-primary is-medium is-fullwidth" data-pixelentity="<%= @pixelentity %>">Save</button>
       </div>
     </div>
   </div>
