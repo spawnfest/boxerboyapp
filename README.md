@@ -32,9 +32,23 @@ mix deps.get
 (cd assets && npm install)
 ```
 
-You can now run the application using
+If you want to see your local environment with a
+terrains, maps and characters then run the following
 
 ```
+cd /tmp/boxerboyapp # or the correct root of the project
+cp ./sampledb/*.tab ./boxerboy/
+```
+
+The above will see your local environment with a `terrains.tab`,
+`maps.tab` and a `characters.tab`.
+
+
+You are now ready to start the application, by running the following
+
+```
+cd /tmp/boxerboyapp # or the correct root of the project
+cd boxerboy
 iex -S mix phx.server
 ```
 
