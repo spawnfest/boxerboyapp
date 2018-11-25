@@ -95,6 +95,56 @@ And now the web application should be up and running at
 http://localhost:4000
 ```
 
+### Deleting Pixels
+
+Although not exposed in the UI (yet), you can delete a pixel from the iex shell
+you started above.
+
+First, list the pixels, and then delete them.  You will need to lookup
+by the named list.  For example
+
+```
+iex> Pixeldb.ls(:terrains)
+["a", "ab", "abc", "flag", "grass", "road", "t1", "test"]
+
+iex> Pixeldb.delete("a", :terrains)
+%Pixeldb.Pixel{
+  columns: 10,
+  name: "a",
+  pixels: [
+    [nil, nil, nil, nil, nil, nil, nil, nil, nil, nil],
+    [nil, nil, nil, nil, nil, nil, nil, nil, nil, nil],
+    [nil, nil, "#55efc4", "#55efc4", nil, nil, nil, nil, nil, nil],
+    [nil, nil, nil, nil, "#55efc4", nil, nil, nil, nil, nil],
+    [nil, nil, nil, nil, "#55efc4", "#55efc4", nil, nil, nil, nil],
+    [nil, nil, nil, nil, nil, "#55efc4", "#55efc4", nil, nil, nil],
+    [nil, nil, nil, nil, nil, nil, "#55efc4", nil, nil, nil],
+    [nil, nil, nil, nil, nil, nil, nil, nil, nil, nil],
+    [nil, nil, nil, nil, nil, nil, nil, nil, nil, nil],
+    [nil, nil, nil, nil, nil, nil, nil, nil, nil, nil]
+  ],
+  rows: 10
+}
+```
+
+Or, to delete a map
+
+```
+iex> Pixeldb.ls(:maps)
+["level1", "level2", "level3", "t1", "test"]
+
+iex> Pixeldb.delete("t1", :maps)
+```
+
+Or, to delete a character
+
+```
+iex> Pixeldb.ls(:characters)
+["boxerboy", "sparkboy", "x"]
+
+iex> Pixeldb.delete("x", :characters)
+```
+
 ## Application Design
 
 The repository is comprised of two separate projects
