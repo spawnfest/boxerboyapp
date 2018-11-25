@@ -172,6 +172,17 @@
   }
 }
 
+.delete-modal {
+  .modal-content {
+    @include text();
+    background-color: #ffffff;
+    padding: 30px 40px 30px 40px;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    color: red;
+  }
+}
+
 .when-done {
   margin-top: 20px;
   @include text();

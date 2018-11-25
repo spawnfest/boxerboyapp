@@ -42,6 +42,7 @@ export var Pixel = (function() {
   {
     entity.save.addClass("is-loading");
     entity.save.prop('disabled', true);
+    entity.delete.prop('disabled', true);
     $.ajax({
       url: `/api/${entity.save.data("pixelentity")}`,
       type: "PUT",
@@ -58,15 +59,41 @@ export var Pixel = (function() {
   }
 
   /**
+   * Attempt a delete, this will disable the button, run the
+   * ajax call (to `/api/{pixelentity}`) and then report
+   * the results based on `.success-modal` and `.error-modal`
+   */
+  entity.attemptDelete = function()
+  {
+    entity.deleteConfirmed.addClass("is-loading");
+    entity.deleteConfirmed.prop('disabled', true);
+    $.ajax({
+      url: `/api/${entity.deleteConfirmed.data("pixelentity")}`,
+      type: "DELETE",
+      dataType: "json",
+      data: {name: entity.name.val()},
+      success: function (reply) {
+        window.location.href = "/";
+      },
+      fail: function () {
+        window.location.href = "/";
+      }
+    });
+  }
+
+  /**
    * Remove all "loading" spinners, any modals and determine
    * if `save` should be enabled.
    */
   entity.refreshEditor = function() {
     const disabled = entity.name.val() == "";
     entity.save.removeClass("is-loading");
+    entity.delete.removeClass("is-loading");
     entity.save.prop('disabled', disabled);
+    entity.delete.prop('disabled', disabled);
     entity.successModal.removeClass("is-active");
     entity.errorModal.removeClass("is-active");
+    entity.deleteModal.removeClass("is-active");
   }
 
   /**
@@ -160,8 +187,11 @@ export var Pixel = (function() {
   function registerSavePixel() {
     entity.name = $('[name="pixel-name"]');
     entity.save = $('[name="pixel-save"]');
+    entity.delete = $('[name="pixel-delete"]');
+    entity.deleteConfirmed = $('[name="pixel-delete-confirmed"]');
     entity.errorModal = $(".error-modal");
     entity.successModal = $(".success-modal");
+    entity.deleteModal = $(".delete-modal");
 
     entity.name.on("change", null, function() {
       entity.refreshEditor();
@@ -173,6 +203,25 @@ export var Pixel = (function() {
 
     entity.save.on("click", null, function() {
       entity.attemptSave();
+    });
+
+    entity.delete.on("click", null, function() {
+      entity.deleteModal.addClass("is-active");
+    })
+
+    entity.deleteConfirmed.on("click", null, function() {
+      entity.attemptDelete();
+    });
+
+    $(".modal-close").on("click", null, function() {
+      entity.refreshEditor();
+    })
+
+    $(document).keyup(function(e) {
+      // escape key maps to keycode `27`
+      if (e.key === "Escape") {
+        entity.refreshEditor();
+      }
     });
   }
 

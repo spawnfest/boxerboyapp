@@ -33,5 +33,9 @@ defmodule BoxerboyWeb.Router do
     put("/terrain", ApiController, :upsert_terrain)
     put("/map", ApiController, :upsert_map)
     put("/character", ApiController, :upsert_character)
+
+    delete("/terrain", ApiController, :delete_terrain)
+    delete("/map", ApiController, :delete_map)
+    delete("/character", ApiController, :delete_character)
   end
 end
