@@ -100,8 +100,8 @@ http://localhost:4000
 
 ### Deleting Pixels
 
-Although not exposed in the UI (yet), you can delete a pixel from the iex shell
-you started above.
+You can delete through the UI now, but just in case you
+wanted to know more about running commands from the `iex` shell.
 
 First, list the pixels, and then delete them.  You will need to lookup
 by the named list.  For example
