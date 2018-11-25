@@ -23,7 +23,7 @@
         <input name="pixel-name" class="input is-medium" type="text" placeholder="Give this pic a name if you want to save it" value="<%= @pixel.name %>">
       </div>
       <div class="column is-one-quarter">
-        <button name="pixel-save" class="button is-primary is-medium is-fullwidth">Save</button>
+        <button name="pixel-save" class="button is-primary is-medium is-fullwidth" data-pixeltype="<%= @pixel_type %>">Save</button>
       </div>
     </div>
   </div>

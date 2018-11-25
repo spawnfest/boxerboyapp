@@ -32,7 +32,7 @@ export var Pixel = (function() {
     entity.save.addClass("is-loading");
     entity.save.prop('disabled', true);
     $.ajax({
-      url: '/api/build/terrain',
+      url: `/api/build/${entity.save.data("pixeltype")}`,
       type: "PUT",
       dataType: "json",
       data: entity.encode(),
