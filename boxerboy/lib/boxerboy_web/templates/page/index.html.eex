@@ -7,6 +7,13 @@
         Helping you to build your own boxerboy
         adventure.
       </p>
+
+      <%= if @featured_character do %>
+      <div class="featured-character">
+        <img src="/gen/character/<%= @featured_character.name %>" />
+      </div>
+      <% end %>
+
     </div>
   </div>
 

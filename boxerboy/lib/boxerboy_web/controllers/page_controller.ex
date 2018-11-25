@@ -2,12 +2,15 @@ defmodule BoxerboyWeb.PageController do
   use BoxerboyWeb, :controller
 
   def index(conn, _params) do
+    characters = Pixeldb.ls_la(:characters)
+
     render(
       conn,
       "index.html",
       terrains: Pixeldb.ls_la(:terrains),
       maps: Pixeldb.ls_la(:maps),
-      characters: Pixeldb.ls_la(:characters)
+      characters: characters,
+      featured_character: Enum.random(characters)
     )
   end
 
