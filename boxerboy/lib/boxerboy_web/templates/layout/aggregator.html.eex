@@ -1,0 +1,55 @@
+<div class="aggregator-editor">
+  <div class="toolbar">
+    <div class="pixel-selector is-clearfix">
+      <%= for pixel <- @pixels do %>
+        <div class="pixel pixel-off" data-name="<%= pixel.name %>">
+          <img src="/gen/terrain/<%= pixel.name %>" />
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="aggregator-container">
+    <table class="aggregate-table">
+      <%= for i <- 0..(@aggregate.rows-1) do %>
+        <% pixel_row = Enum.at(@aggregate.pixels, i, []) %>
+        <tr class="aggregate-row">
+          <%= for j <- 0..(@aggregate.columns-1) do %>
+            <% pixel_name = Enum.at(pixel_row, j, "") %>
+            <td class="aggregate-column" <%= if pixel_name do %>data-name="<%= pixel_name %>" style="background-image: url('/gen/terrain/<%= pixel_name %>')"<% end %>></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="save-container">
+    <div class="columns">
+      <div class="column is-three-quarters">
+        <input name="aggregate-name" class="input is-medium" type="text" placeholder="Give this map a name if you want to save it" value="<%= @aggregate.name %>">
+      </div>
+      <div class="column is-one-quarter">
+        <button name="aggregate-save" class="button is-primary is-medium is-fullwidth">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal success-modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      Map Saved
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+
+  <div class="modal error-modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      Something went terribly wrong when saving your
+      map.  Most likely your work is lost.
+      Close this message when you are ready (top right corner)
+      and try again.  If this issue persists, please reach out to
+      <a href="mailto:aforward@gmail.com">aforward@gmail.com</a>
+      and tell him (politely) his sh*t be broken.
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+</div>

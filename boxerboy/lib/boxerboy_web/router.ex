@@ -20,6 +20,8 @@ defmodule BoxerboyWeb.Router do
     get "/build", PageController, :build
     get "/build/terrain", PageController, :terrain
     get "/build/terrain/:name", PageController, :terrain
+    get "/build/map", PageController, :map
+    get "/build/map/:name", PageController, :map
 
     get "/gen/terrain/:name", PageController, :terrain_bitmap
   end
@@ -27,5 +29,6 @@ defmodule BoxerboyWeb.Router do
   scope "/api", BoxerboyWeb do
     pipe_through(:api)
     put("/build/terrain", ApiController, :upsert_terrain)
+    put("/build/map", ApiController, :upsert_map)
   end
 end

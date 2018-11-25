@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="columns is-centered top-header">
+    <div class="column is-half">
+      <h1>Map</h1>
+      <p>
+        Layout a "one-page" map for your game.
+        Your maps will be a collection on terrains
+        (<a href="/build/terrain">build more here</a>)
+      </p>
+      <%= render BoxerboyWeb.LayoutView,
+        "aggregator.html",
+        pixels: assigns[:pixels],
+        aggregate: assigns[:aggregate] || %Pixeldb.Pixel{
+          rows: 10,
+          columns: 10,
+        }
+        %>
+      <div class="when-done">
+        <p>
+          When you are done editing, return to <a href="/build">Boxerboy Builder</a> to see all the maps you created.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

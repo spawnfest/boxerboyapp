@@ -24,11 +24,95 @@
 .pixel-rendered {
   .canvas-container {
     table {
+      tr {
+        line-height: 0px;
+      }
       td {
-        width: 10px;
-        height: 10px;
+        line-height: 0px;
+        width: 5px;
+        height: 5px;
+        img {
+          display: block;
+        }
       }
     }
+  }
+}
+
+.pixel-canvas {
+  canvas {
+    display: block;
+  }
+}
+
+.maps-list {
+  .add-icon {
+    width: 50px;
+  }
+}
+
+.terrains-list {
+  .add-icon {
+    width: 50px;
+  }
+  .pixel {
+    width: 50px;
+    .pixel-name {
+      text-align: center;
+    }
+    img {
+      border: 1px solid #bdc3c7;
+      width: 100%;
+      display: block;
+    }
+
+  }
+}
+
+.aggregator-editor {
+  .pixel-selector {
+    .pixel-off {
+      opacity: 0.5;
+      border: 2px solid grey;
+    }
+
+    .pixel-on {
+      opacity: 1;
+      border: 2px solid black;
+    }
+
+    .pixel {
+      cursor: url('/images/crayon-sw.svg'), auto;
+      padding: 5px;
+      float: left;
+      margin-right: 10px;
+      img {
+        width: 50px;
+        display: block;
+      }
+    }
+  }
+  .aggregator-container {
+    table {
+      margin-top: 10px;
+      width: 100%;
+      td {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        border: 1px solid #dfe6e9;
+        cursor: url('/images/crayon-sw.svg'), auto;
+        width: 50px;
+        height: 50px;
+        img {
+          width: 100%;
+          display: block;
+        }
+      }
+    }
+  }
+  .save-container {
+    margin-top: 10px;
   }
 }
 
@@ -57,29 +141,29 @@
   .save-container {
     margin-top: 10px;
   }
+}
 
-  .success-modal {
-    .modal-content {
-      @include text();
-      background-color: #ffffff;
-      padding: 30px 40px 30px 40px;
-      border: 2px solid #000000;
-      border-radius: 5px;
-      font-size: 70px;
-      color: #1e90ff;
-      text-align: center;
-    }
+.success-modal {
+  .modal-content {
+    @include text();
+    background-color: #ffffff;
+    padding: 30px 40px 30px 40px;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    font-size: 70px;
+    color: #1e90ff;
+    text-align: center;
   }
+}
 
-  .error-modal {
-    .modal-content {
-      @include text();
-      background-color: #ffffff;
-      padding: 30px 40px 30px 40px;
-      border: 2px solid #000000;
-      border-radius: 5px;
-      color: red;
-    }
+.error-modal {
+  .modal-content {
+    @include text();
+    background-color: #ffffff;
+    padding: 30px 40px 30px 40px;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    color: red;
   }
 }
 

@@ -19,18 +19,49 @@
   </div>
   <div class="columns is-centered">
     <div class="column is-half">
-      <div class="columns is-multiline">
+      <div class="columns is-multiline terrains-list">
         <%= for pixel <- @terrains do %>
           <div class="column is-2">
-            <a href="/build/terrain/<%= pixel.name %>" title="Click here to edit the <%= pixel.name %> terrain">
+            <div class="pixel">
+              <a href="/build/terrain/<%= pixel.name %>" title="Click here to edit the <%= pixel.name %> terrain">
+                <img src="/gen/terrain/<%= pixel.name %>" />
+                <div class="pixel-name"><%= pixel.name %></div>
+              </a>
+            </div>
+          </div>
+        <% end %>
+        <div class="column is-2">
+          <a href="/build/terrain" title="Click here to create a new terrain">
+            <img class="add-icon" src="/images/plus-circle-outline.svg" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="columns is-centered top-header">
+    <div class="column is-half">
+      <h2>Maps (<%= Enum.count(@maps) %>)</h2>
+      <p>
+        Your game maps. Pick one to edit, or create a new one.
+      </p>
+    </div>
+  </div>
+  <div class="columns is-centered">
+    <div class="column is-half">
+      <div class="columns is-multiline maps-list">
+        <%= for pixel <- @maps do %>
+          <div class="column is-2">
+            <a href="/build/map/<%= pixel.name %>" title="Click here to edit the <%= pixel.name %> terrain">
               <%= render BoxerboyWeb.LayoutView, "rendered.html", pixel: pixel %>
               <label><%= pixel.name %></label>
             </a>
           </div>
         <% end %>
         <div class="column is-2">
-          <a href="/build/terrain" title="Click here to create a new terrain">
-            <img src="/images/plus-circle-outline.svg" />
+          <a href="/build/map" title="Click here to create a new terrain">
+            <img class="add-icon" src="/images/plus-circle-outline.svg" />
           </a>
         </div>
       </div>
