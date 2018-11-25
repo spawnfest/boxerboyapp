@@ -1,0 +1,16 @@
+<div class="toolbar">
+  <%= case @pixeltype do %>
+  <%   :color -> %>
+    <div class="color-selector">
+      <input type="color" value="<%= @default_color %>">
+    </div>
+  <%   :pixel -> %>
+    <div class="pixel-selector is-clearfix">
+      <%= for pixel <- @pixels do %>
+        <div class="pixel pixel-off" data-name="<%= pixel.name %>">
+          <img src="/gen/terrain/<%= pixel.name %>" />
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

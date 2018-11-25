@@ -1,22 +1,6 @@
-<div class="pixel-editor">
-  <div class="toolbar">
-    <div class="color-selector">
-      <input type="color" value="<%= @default_color %>">
-    </div>
-  </div>
-  <div class="canvas-container">
-    <table class="pixel-table" data-pixeltype="<%= @pixeltype %>">
-      <%= for i <- 0..(@pixel.rows-1) do %>
-        <% pixel_row = Enum.at(@pixel.pixels, i, []) %>
-        <tr>
-          <%= for j <- 0..(@pixel.columns-1) do %>
-            <% pixel_column = Enum.at(pixel_row, j, "") %>
-            <td data-pixel="<%= pixel_column %>" style="background-color: <%= pixel_column %>" ></td>
-          <% end %>
-        </tr>
-      <% end %>
-    </table>
-  </div>
+<div class="pixel-<%= @pixeltype %>-editor">
+  <%= render BoxerboyWeb.LayoutView, "editor_toolbar.html", assigns %>
+  <%= render BoxerboyWeb.LayoutView, "editor_canvas.html", assigns %>
   <div class="save-container">
     <div class="columns">
       <div class="column is-three-quarters">
@@ -26,26 +10,5 @@
         <button name="pixel-save" class="button is-primary is-medium is-fullwidth" data-pixelentity="<%= @pixelentity %>">Save</button>
       </div>
     </div>
-  </div>
-
-  <div class="modal success-modal">
-    <div class="modal-background"></div>
-    <div class="modal-content">
-      Pixels Saved
-    </div>
-    <button class="modal-close is-large" aria-label="close"></button>
-  </div>
-
-  <div class="modal error-modal">
-    <div class="modal-background"></div>
-    <div class="modal-content">
-      Something went terribly wrong when saving your
-      pixel.  Most likely your work is lost.
-      Close this message when you are ready (top right corner)
-      and try again.  If this issue persists, please reach out to
-      <a href="mailto:aforward@gmail.com">aforward@gmail.com</a>
-      and tell him (politely) his sh*t be broken.
-    </div>
-    <button class="modal-close is-large" aria-label="close"></button>
   </div>
 </div>

@@ -25,4 +25,24 @@
       </div>
     </div>
   </div>
+  <div class="modal success-modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      Terrain Saved
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+
+  <div class="modal error-modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      Something went terribly wrong when saving your
+      terrain.  Most likely your work is lost.
+      Close this message when you are ready (top right corner)
+      and try again.  If this issue persists, please reach out to
+      <a href="mailto:aforward@gmail.com">aforward@gmail.com</a>
+      and tell him (politely) his sh*t be broken.
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
 </div>

@@ -25,9 +25,9 @@ defmodule BoxerboyWeb.PageController do
   def map(conn, params) do
     params["name"]
     |> Pixeldb.fetch(:maps)
-    |> (fn aggregate ->
+    |> (fn pixel ->
           render(conn, "map.html",
-            aggregate: aggregate,
+            pixel: pixel,
             pixels: Pixeldb.ls_la(:terrains)
           )
         end).()
