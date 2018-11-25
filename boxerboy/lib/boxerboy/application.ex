@@ -9,7 +9,10 @@ defmodule Boxerboy.Application do
       Supervisor.child_spec({Pixeldb.Worker, [table: "terrains.tab", name: :terrains]},
         id: :terrains
       ),
-      Supervisor.child_spec({Pixeldb.Worker, [table: "maps.tab", name: :maps]}, id: :maps)
+      Supervisor.child_spec({Pixeldb.Worker, [table: "maps.tab", name: :maps]}, id: :maps),
+      Supervisor.child_spec({Pixeldb.Worker, [table: "characters.tab", name: :characters]},
+        id: :characters
+      )
     ]
 
     opts = [strategy: :one_for_one, name: Boxerboy.Supervisor]

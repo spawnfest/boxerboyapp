@@ -7,7 +7,7 @@
           <%= case @pixeltype do %>
           <%   :color -> %>
             <% pixel_column = Enum.at(pixel_row, j, "") %>
-            <td data-pixel="<%= pixel_column %>" style="background-color: <%= pixel_column %>" ></td>
+            <td data-pixel="<%= pixel_column %>" style="background-color: <%= pixel_column %>; height: <%= @pixelheight %>" ></td>
           <%   :pixel -> %>
             <% pixel_name = Enum.at(pixel_row, j, "") %>
             <td <%= if pixel_name do %>data-pixel="<%= pixel_name %>" style="background-image: url('/gen/terrain/<%= pixel_name %>')"<% end %>></td>

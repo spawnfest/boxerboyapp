@@ -1,26 +1,26 @@
 <div class="container">
   <div class="columns is-centered top-header">
     <div class="column is-half">
-      <h1>Map</h1>
+      <h1>Character</h1>
       <p>
-        Layout a "one-page" map for your game.
-        Your maps will be a collection on terrains
-        (<a href="/build/terrain">build more here</a>)
+        Build friends, enemies, spies, whatever.
+        The pixel colour can be changed using the color
+        selector below.
       </p>
       <%= render BoxerboyWeb.LayoutView,
         "editor.html",
-        pixeltype: :pixel,
-        pixelentity: :map,
-        pixels: assigns[:pixels],
-        pixelheight: "50px",
+        default_color: "#55efc4",
+        pixeltype: :color,
+        pixelentity: :character,
+        pixelheight: "30px",
         pixel: assigns[:pixel] || %Pixeldb.Pixel{
-          rows: 10,
-          columns: 10,
+          rows: 20,
+          columns: 20,
         }
         %>
       <div class="when-done">
         <p>
-          When you are done editing, return to <a href="/build">Boxerboy Builder</a> to see all the maps you created.
+          When you are done editing, return to <a href="/build">Boxerboy Builder</a> to see all the characters you created.
         </p>
       </div>
     </div>
@@ -28,7 +28,7 @@
   <div class="modal success-modal">
     <div class="modal-background"></div>
     <div class="modal-content">
-      Map Saved
+      Character Saved
     </div>
     <button class="modal-close is-large" aria-label="close"></button>
   </div>
@@ -37,7 +37,7 @@
     <div class="modal-background"></div>
     <div class="modal-content">
       Something went terribly wrong when saving your
-      map.  Most likely your work is lost.
+      character.  Most likely your work is lost.
       Close this message when you are ready (top right corner)
       and try again.  If this issue persists, please reach out to
       <a href="mailto:aforward@gmail.com">aforward@gmail.com</a>

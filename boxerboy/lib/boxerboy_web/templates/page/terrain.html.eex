@@ -13,6 +13,7 @@
         default_color: "#55efc4",
         pixeltype: :color,
         pixelentity: :terrain,
+        pixelheight: "50px",
         pixel: assigns[:pixel] || %Pixeldb.Pixel{
           rows: 10,
           columns: 10,
