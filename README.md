@@ -1,5 +1,8 @@
 # Boxerboy
 
+<img width="1145" alt="screen shot 2018-11-25 at 11 56 33 am" src="https://user-images.githubusercontent.com/48086/48981896-38547b00-f0a9-11e8-8f1f-0549516c99c9.png">
+
+
 ## Getting Started
 
 To run boxerboy, you will need Erlang and Elixir.
