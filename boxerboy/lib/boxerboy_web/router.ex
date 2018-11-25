@@ -20,6 +20,8 @@ defmodule BoxerboyWeb.Router do
     get "/build", PageController, :build
     get "/build/terrain", PageController, :terrain
     get "/build/terrain/:name", PageController, :terrain
+
+    get "/gen/terrain/:name", PageController, :terrain_bitmap
   end
 
   scope "/api", BoxerboyWeb do

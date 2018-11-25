@@ -16,4 +16,13 @@ defmodule BoxerboyWeb.PageController do
           render(conn, "terrain.html", pixel: pixel)
         end).()
   end
+
+  def terrain_bitmap(conn, params) do
+    params["name"]
+    |> Pixeldb.fetch(:terrains)
+    |> Pixeldb.to_bmp()
+    |> case do
+      bmp -> conn |> put_resp_content_type("image/bmp") |> send_resp(200, bmp)
+    end
+  end
 end
