@@ -1,7 +1,7 @@
 
 <div class="container">
   <div class="columns is-centered top-header">
-    <div class="column">
+    <div class="column is-half">
       <h1>Boxerboy</h1>
       <p>
         Helping you to build your own boxerboy
@@ -13,10 +13,8 @@
         <img src="/gen/character/<%= @featured_character.name %>" />
       </div>
       <% end %>
-
     </div>
-  </div>
-
+    <div class="column is-half">
   <div class="columns is-centered top-header">
     <div class="column">
       <h2>Terrains (<%= Enum.count(@terrains) %>)</h2>
@@ -30,7 +28,7 @@
     <div class="column">
       <div class="columns is-multiline terrains-list">
         <%= for pixel <- @terrains do %>
-          <div class="column is-1">
+          <div class="column is-2">
             <div class="pixel">
               <a href="/terrain/<%= pixel.name %>" title="Click here to edit the <%= pixel.name %> terrain">
                 <img src="/gen/terrain/<%= pixel.name %>" />
@@ -39,7 +37,7 @@
             </div>
           </div>
         <% end %>
-        <div class="column is-1">
+        <div class="column is-2">
           <a href="/terrain" title="Click here to create a new terrain">
             <img class="add-icon" src="/images/plus-circle-outline.svg" />
           </a>
@@ -60,7 +58,7 @@
     <div class="column">
       <div class="columns is-multiline maps-list">
         <%= for pixel <- @maps do %>
-          <div class="column is-1">
+          <div class="column is-2">
             <a href="/map/<%= pixel.name %>" title="Click here to edit the <%= pixel.name %> terrain">
               <%= render BoxerboyWeb.LayoutView, "rendered.html", pixel: pixel %>
               <label><%= pixel.name %></label>
@@ -107,4 +105,6 @@
     </div>
   </div>
 
+    </div>
+  </div>
 </div>
