@@ -22,6 +22,12 @@ defmodule Pixeldb.Worker do
     |> invoke({:reply, {:ok, pixel}, Keyword.put(state, :pixels, &1)})
   end
 
+  def handle_call({:delete, name}, _from, state) do
+    {existing_pixel, new_state} = state |> pop_in([:pixels, name])
+    :ets.delete(state[:table], name)
+    {:reply, existing_pixel, new_state}
+  end
+
   def handle_call({:fetch, name}, _from, state) do
     {:reply, state[:pixels][name], state}
   end

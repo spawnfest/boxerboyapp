@@ -2,10 +2,12 @@ defmodule PixeldbTest do
   use ExUnit.Case, async: true
   alias Pixeldb.{Pixel, Worker}
 
-  setup do
+  setup_all do
     File.rm("pixeldb.tab")
     File.rm("pixeldb_1.tab")
     File.rm("pixeldb_2.tab")
+    File.rm("pixeldb_3.tab")
+    File.rm("pixeldb_4.tab")
     :ok
   end
 
@@ -63,7 +65,7 @@ defmodule PixeldbTest do
   end
 
   test "upsert properly sort string numbers" do
-    pid = worker(table: "pixeldb_2.tab")
+    pid = worker(table: "pixeldb_3.tab")
 
     raw_pixel = %{
       "columns" => "3",
@@ -130,6 +132,20 @@ defmodule PixeldbTest do
 
     expected = File.read!("./test/fixtures/blue_over_orange.bmp")
     assert expected == Pixeldb.to_bmp(pixel)
+  end
+
+  test "delete pixel" do
+    pid = worker(table: "pixeldb_4.tab")
+    assert nil == Pixeldb.delete("missing_pixel", pid)
+
+    pixel1 = %Pixel{name: "mountain", rows: 1, columns: 1, pixels: [["#3d3d3d"]]}
+    pixel2 = %Pixel{name: "river", rows: 1, columns: 1, pixels: [["#3d3d3e"]]}
+    Pixeldb.upsert(pixel1, pid)
+    Pixeldb.upsert(pixel2, pid)
+
+    assert pixel2 == Pixeldb.delete("river", pid)
+    assert nil == Pixeldb.fetch("river", pid)
+    assert pixel1 == Pixeldb.fetch("mountain", pid)
   end
 
   def worker(opts \\ []) do

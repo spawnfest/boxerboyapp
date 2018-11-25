@@ -168,5 +168,30 @@ defmodule Pixeldb do
     GenServer.call(Worker.resolve_pid(pid), {:upsert, pixel})
   end
 
+  @doc """
+  Delete the pixel, by name
+
+  If you are managing multiple pixel databases, then
+  you can provide the `pid`, otherwise it will default
+  to the named worker
+
+  ## Examples
+
+      # if it exists, then return it on delete
+      iex> Pixeldb.delete("mountain")
+      %Pixeldb.Pixel{
+        rows: 1,
+        columns: 1,
+        pixels: [["#55efc4"]]
+      }
+
+      # if it didn't exist, then return nil
+      iex> Pixeldb.delete("stars")
+      nil
+  """
+  def delete(name, pid \\ nil) do
+    GenServer.call(Worker.resolve_pid(pid), {:delete, name})
+  end
+
   defdelegate to_bmp(pixel), to: Bitmap, as: :generate
 end
